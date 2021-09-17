@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "this" {
   provider = aws.main
-  bucket   = "${var.stage}-${var.project_name}"
+  bucket   = var.project_name
   policy   = data.aws_iam_policy_document.this.json
 
   website {
