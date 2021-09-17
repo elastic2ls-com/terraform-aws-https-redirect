@@ -1,18 +1,15 @@
 variable "project_name" {
   type        = string
-  default     = "www-yourdomain-de"
   description = "General project prefix"
 }
 
 variable "source_domain" {
   type        = string
-  default     = "www.yourdomain.de"
   description = "Domain which to redirect"
 }
 
 variable "target_domain" {
   type        = string
-  default     = "www.otherdomain.de"
   description = "Domain to redirect request to"
 }
 
@@ -30,4 +27,10 @@ variable "certificate_region" {
 variable "main_region" {
   type    = string
   default = "eu-central-1"
+}
+
+variable "stage" {
+  type = string
+  default = "stage"
+  description = "the name of your stage"
 }
