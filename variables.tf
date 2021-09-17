@@ -1,18 +1,18 @@
 variable "project_name" {
   type        = string
-  default     = "booking-camperdays-de"
+  default     = "www-yourdomain-de"
   description = "General project prefix"
 }
 
 variable "source_domain" {
   type        = string
-  default     = "booking.camperdays.de"
+  default     = "www.yourdomain.de"
   description = "Domain which to redirect"
 }
 
 variable "target_domain" {
   type        = string
-  default     = "www.camperdays.de"
+  default     = "www.otherdomain.de"
   description = "Domain to redirect request to"
 }
 
