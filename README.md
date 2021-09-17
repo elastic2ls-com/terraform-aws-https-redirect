@@ -9,9 +9,9 @@ This module helps you create a S3 bucket which performs HTTPS redirection. It in
 
 
 ## Sample Usage
-This module requires 3 arguments. 
-* `project_name` will be used for s3 bucket and tags. 
-* `source_domain` is the domain where you need to enable the redirect for. 
+This module requires 3 arguments.
+* `project_name` will be used for s3 bucket and tags.
+* `source_domain` is the domain where you need to enable the redirect for.
 * `target_domain`is the domain you redirect to.
 
 ```
@@ -23,3 +23,5 @@ source = "git@github.com:elastic2ls/terraform-aws-s3-cloudfront-redirect.git"
   target_domain = var.target_domain
 }
 ```
+
+The module can also be found in the Terraform Registry https://registry.terraform.io/modules/elastic2ls-com/https-redirect/aws/latest.
