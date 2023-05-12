@@ -1,10 +1,7 @@
 resource "aws_s3_bucket" "this" {
   provider = aws.main
   bucket   = var.project_name
-  policy   = data.aws_iam_policy_document.this.json
-
-  block_public_acls       = true
-  
+  policy   = data.aws_iam_policy_document.this.json  
   website {
     redirect_all_requests_to = "https://${var.target_domain}"
   }
@@ -15,6 +12,15 @@ resource "aws_s3_bucket" "this" {
       "Name" = var.project_name
     },
   )
+}
+
+resource "aws_s3_bucket_public_access_block" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 data "aws_iam_policy_document" "this" {
@@ -44,6 +50,7 @@ data "aws_iam_policy_document" "this" {
 
 resource "aws_kms_key" "this" {
   deletion_window_in_days = 10
+  enable_key_rotation = true
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
@@ -63,10 +70,20 @@ resource "aws_s3_bucket_versioning" "this" {
   versioning_configuration {
     status = "Enabled"
   }
+  versioning.mfa_delete = true
 }
 
 resource "aws_s3_bucket" "log_bucket" {
   bucket = "log_bucket"
+}
+
+resource "aws_s3_bucket_public_access_block" "log" {
+  bucket = aws_s3_bucket.log_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_acl" "log_bucket_acl" {
