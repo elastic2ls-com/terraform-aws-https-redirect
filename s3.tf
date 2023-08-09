@@ -69,7 +69,7 @@ resource "aws_s3_bucket_versioning" "this" {
   bucket = aws_s3_bucket.this.id
   versioning_configuration {
     status = "Enabled"
-    mfa_delete = true
+    mfa_delete = enabled
   }
 }
 
@@ -102,6 +102,6 @@ resource "aws_s3_bucket_versioning" "log_bucket" {
   bucket = aws_s3_bucket.log_bucket.id
   versioning_configuration {
     status = "Enabled"
-    mfa_delete = true
+    mfa_delete = enabled
   }
 }
