@@ -97,3 +97,11 @@ resource "aws_s3_bucket_logging" "this" {
   target_bucket = aws_s3_bucket.log_bucket.id
   target_prefix = "log/"
 }
+
+resource "aws_s3_bucket_versioning" "log_bucket" {
+  bucket = aws_s3_bucket.log_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+    mfa_delete = true
+  }
+}
